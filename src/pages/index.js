@@ -74,7 +74,7 @@ function Home() {
               )}
               to={useBaseUrl("docs/")}
             >
-              Get Started 4
+              Get Started 5
             </Link>
           </div>
         </div>
