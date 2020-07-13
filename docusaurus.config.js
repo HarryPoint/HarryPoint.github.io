@@ -2,7 +2,7 @@ module.exports = {
   title: "My Site",
   tagline: "The tagline of my site",
   url: "https://harrypoint.github.io",
-  baseUrl: "/doc-blog/",
+  baseUrl: "/",
   favicon: "img/favicon.ico",
   organizationName: "HarryPoint", // Usually your GitHub org/user name.
   projectName: "doc-blog", // Usually your repo name.
