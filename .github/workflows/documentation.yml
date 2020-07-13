@@ -51,8 +51,9 @@ jobs:
           USE_SSH: true
           GIT_USER: HarryPoint
         run: |
-          git config --global user.email "HarryPoint@gihub.com"
-          git config --global user.name "HarryPoint"
+          git config --global user.email "1751826104@qq.com"
+          git config --global user.name "harry"
+          cat ~/.ssh/id_rsa
           if [ -e yarn.lock ]; then
           yarn install --frozen-lockfile
           elif [ -e package-lock.json ]; then
