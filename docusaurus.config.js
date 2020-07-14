@@ -3,7 +3,7 @@ module.exports = {
   tagline: "The tagline of my site",
   url: "https://harrypoint.github.io",
   baseUrl: "/",
-  favicon: "img/favicon.ico",
+  favicon: "img/avatar.jpg",
   organizationName: "HarryPoint", // Usually your GitHub org/user name.
   projectName: "HarryPoint.github.io", // Usually your repo name.
   themeConfig: {
@@ -11,7 +11,7 @@ module.exports = {
       title: "My Site",
       logo: {
         alt: "My Site Logo",
-        src: "img/logo.svg",
+        src: "img/avatar.jpg",
       },
       links: [
         {
