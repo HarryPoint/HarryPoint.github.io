@@ -77,6 +77,12 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
+    // algolia: {
+    //   apiKey: "api-key",
+    //   indexName: "index-name",
+    //   appId: "app-id", // Optional, if you run the DocSearch crawler on your own
+    //   algoliaOptions: {}, // Optional, if provided by Algolia
+    // },
   },
   presets: [
     [
