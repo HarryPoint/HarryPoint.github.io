@@ -1,7 +1,7 @@
 const repo = "https://github.com/HarryPoint/HarryPoint.github.io";
 module.exports = {
-  title: "My Site",
-  tagline: "The tagline of my site",
+  title: "notes",
+  tagline: "my notes",
   url: "https://harrypoint.github.io",
   baseUrl: "/",
   favicon: "img/avatar.jpg",
@@ -23,7 +23,7 @@ module.exports = {
         },
         { to: "blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: repo,
           label: "GitHub",
           position: "right",
         },
@@ -46,23 +46,6 @@ module.exports = {
           ],
         },
         {
-          title: "Community",
-          items: [
-            {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "Twitter",
-              href: "https://twitter.com/docusaurus",
-            },
-          ],
-        },
-        {
           title: "More",
           items: [
             {
@@ -71,12 +54,12 @@ module.exports = {
             },
             {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: repo,
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built by HarryPoint.`,
     },
     // algolia: {
     //   apiKey: "api-key",
