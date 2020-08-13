@@ -1,6 +1,6 @@
 module.exports = {
   someSidebar: {
-    收藏: ["collect/css动画库"],
+    收藏: ["collect/css动画库", "collect/js动画库"],
     js: [
       "js/对象方法",
       "js/老司机",
