@@ -1,6 +1,7 @@
 module.exports = {
   someSidebar: {
     收藏: ["collect/css动画库", "collect/js动画库"],
+    react: ["react/React-typescript"],
     js: [
       "js/对象方法",
       "js/老司机",
