@@ -3,7 +3,7 @@
 | 内置类型               | 说明                                                                  |
 | ---------------------- | --------------------------------------------------------------------- |
 | React.ReactElement     | 使用`React.createElement`创建的，可以简单理解为`React`中的`JSX`的元素 |
-| React.ReactNode        | <div>xxx</div>xxx 的合法类型                                          |
+| React.ReactNode        | `<div>xxx</div>` 的合法类型                                           |
 | React.CSSProperties    | 组件内联的`style`对象的类型                                           |
 | React.RefObject        | `React.createRef`创建的类型，只读不可改                               |
 | React.MutableRefObject | `useRef`创建的类型，可以修改                                          |
