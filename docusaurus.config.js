@@ -6,9 +6,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
-  url: "https://your-docusaurus-test-site.com",
+  title: "Hi Harry",
+  tagline: "Your are so handsome!",
+  url: "https://harrypoint.github.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -46,19 +46,19 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "My Site",
+        title: "Hi Harry",
         logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
+          alt: "Logo",
+          src: "img/logo.png",
         },
         items: [
           {
             type: "doc",
             docId: "notes",
             position: "left",
-            label: "docs",
+            label: "随笔",
           },
-          { to: "/blog", label: "Blog", position: "left" },
+          { to: "/blog", label: "博客", position: "left" },
           {
             href: "https://github.com/HarryPoint",
             label: "GitHub",
@@ -70,46 +70,25 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "文档",
             items: [
               {
-                label: "notes",
+                label: "随笔",
                 to: "/docs/notes",
               },
             ],
           },
           {
-            title: "Community",
+            title: "更多",
             items: [
-              {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              },
-              {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
-              },
-            ],
-          },
-          {
-            title: "More",
-            items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
               {
                 label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
+                href: "https://github.com/HarryPoint",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} , Inc. Built by Harry.`,
       },
       prism: {
         theme: lightCodeTheme,
