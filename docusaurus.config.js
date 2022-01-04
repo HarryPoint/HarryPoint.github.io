@@ -27,13 +27,13 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl:
-            "https://github.com/HarryPoint/HarryPoint.github.io/blob/main/doc/",
+            "https://github.com/HarryPoint/HarryPoint.github.io/blob/main/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            "https://github.com/HarryPoint/HarryPoint.github.io/blob/main/blog/",
+            "https://github.com/HarryPoint/HarryPoint.github.io/blob/main/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
