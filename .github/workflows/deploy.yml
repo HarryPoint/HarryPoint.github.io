@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths: [./**]
 
 jobs:
   deploy:
@@ -14,7 +15,7 @@ jobs:
         with:
           node-version: 14.x
           cache: yarn
-      - name: Build HarryPoint.github.io
+      - name: Build website
         working-directory: ./
         run: |
           yarn install --frozen-lockfile
