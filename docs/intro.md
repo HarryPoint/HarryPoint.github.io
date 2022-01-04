@@ -25,6 +25,7 @@ npm init docusaurus@latest my-website classic
 Run the development server:
 
 ```shell
+# demo
 cd my-website
 
 npx docusaurus start
