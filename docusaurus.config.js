@@ -16,7 +16,6 @@ const config = {
   organizationName: "HarryPoint", // Usually your GitHub org/user name.
   projectName: "HarryPoint.github.io", // Usually your repo name.
   trailingSlash: false,
-  deploymentBranch: "main",
 
   presets: [
     [
