@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[9999],{9751:function(s){s.exports=JSON.parse('{"name":"js","permalink":"/docs/tags/js","docs":[{"id":"\u5947\u602a\u7684javascrpt","title":"\u8001\u53f8\u673a\u5199js","description":"","permalink":"/docs/\u5947\u602a\u7684javascrpt"}],"allTagsPath":"/docs/tags"}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[8862],{1188:function(t){t.exports=JSON.parse('{"name":"typescript","permalink":"/docs/tags/typescript","docs":[{"id":"react+typescript","title":"react+typescript","description":"\u7c7b\u578b\u7b80\u8ff0","permalink":"/docs/react+typescript"}],"allTagsPath":"/docs/tags"}')}}]);
