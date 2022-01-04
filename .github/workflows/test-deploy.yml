@@ -3,7 +3,7 @@ name: Test deployment
 on:
   pull_request:
     branches: [main]
-    paths: [website/**]
+    paths: [HarryPoint.github.io/**]
 
 jobs:
   test-deploy:
@@ -16,7 +16,7 @@ jobs:
           node-version: 14.x
           cache: yarn
       - name: Test build
-        working-directory: website
+        working-directory: HarryPoint.github.io
         run: |
           yarn install --frozen-lockfile
           yarn build
