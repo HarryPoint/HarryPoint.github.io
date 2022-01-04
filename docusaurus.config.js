@@ -27,13 +27,13 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/HarryPoint/HarryPoint.github.io/blob/main/doc/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/HarryPoint/HarryPoint.github.io/blob/main/blog/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -54,13 +54,13 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "intro",
+            docId: "notes",
             position: "left",
-            label: "Tutorial",
+            label: "docs",
           },
           { to: "/blog", label: "Blog", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/HarryPoint",
             label: "GitHub",
             position: "right",
           },
@@ -73,8 +73,8 @@ const config = {
             title: "Docs",
             items: [
               {
-                label: "Tutorial",
-                to: "/docs/intro",
+                label: "notes",
+                to: "/docs/notes",
               },
             ],
           },

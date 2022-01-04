@@ -1,5 +1,3 @@
-# 使用 weinre 调试移动端页面
-
 - 安装 weinre
 
 ```shell

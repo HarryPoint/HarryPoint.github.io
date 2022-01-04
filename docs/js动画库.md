@@ -1,3 +1,8 @@
+---
+sidebar_position: 1
+tags: [javascript]
+---
+
 ## [Three.js](https://github.com/mrdoob/three.js/)
 
 > 超过`46K`的星星，这个流行的库提供了非常多的 3D 显示功能，以一种直观的方式使用 WebGL。这个库提供了`<canvas>`、 `<svg>`、CSS3D 和 WebGL 渲染器，让咱们在设备和浏览器之间创建丰富的交互体验。该库于 2010 年 4 月首次推出，目前仍有近 1000 名贡献者在开发中。

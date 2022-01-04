@@ -1,3 +1,7 @@
+---
+tags: [react, typescript]
+---
+
 ## 类型简述
 
 | 内置类型               | 说明                                                                  |
