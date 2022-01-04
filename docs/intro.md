@@ -28,7 +28,7 @@ Run the development server:
 # demo
 cd my-website
 
-npx docusaurus start
+npx docusaurus start---
 ```
 
 Your site starts at `http://localhost:3000`.
