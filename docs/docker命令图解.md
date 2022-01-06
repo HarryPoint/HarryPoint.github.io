@@ -1,6 +1,6 @@
 ## 一张图总结 Docker 的命令
 
-![cmd_logic.png](https://note.youdao.com/yws/res/1931/WEBRESOURCE32223ca2bd1dc6d7f317f997861e62de)
+![cmd_logic.png](/img/docker_cmd.png)
 
 # 客户端命令(docker)
 
