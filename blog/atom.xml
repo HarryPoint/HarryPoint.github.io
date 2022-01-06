@@ -2,62 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://harrypoint.github.io/blog</id>
     <title>Hi Harry Blog</title>
-    <updated>2021-08-26T00:00:00.000Z</updated>
+    <updated>2022-01-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://harrypoint.github.io/blog"/>
     <subtitle>Hi Harry Blog</subtitle>
     <icon>https://harrypoint.github.io/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[Welcome]]></title>
-        <id>welcome</id>
-        <link href="https://harrypoint.github.io/blog/welcome"/>
-        <updated>2021-08-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Docusaurus blogging features are powered by the blog plugin.]]></summary>
-        <content type="html"><![CDATA[<p><a href="https://docusaurus.io/docs/blog">Docusaurus blogging features</a> are powered by the <a href="https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog">blog plugin</a>.</p><p>Simply add Markdown files (or folders) to the <code>blog</code> directory.</p><p>Regular blog authors can be added to <code>authors.yml</code>.</p><p>The blog post date can be extracted from filenames, such as:</p><ul><li><code>2019-05-30-welcome.md</code></li><li><code>2019-05-30-welcome/index.md</code></li></ul><p>A blog post folder can be convenient to co-locate blog post images:</p><p><img src="./docusaurus-plushie-banner.jpeg" alt="Docusaurus Plushie"/></p><p>The blog supports tags as well!</p><p><strong>And if you don&#x27;t want a blog</strong>: just delete this directory, and use <code>blog: false</code> in your Docusaurus config.</p>]]></content>
+        <title type="html"><![CDATA[送自己一个生日礼物]]></title>
+        <id>/2022/01/06/送自己一个生日礼物</id>
+        <link href="https://harrypoint.github.io/blog/2022/01/06/送自己一个生日礼物"/>
+        <updated>2022-01-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[建站初衷: 自问是一个比较喜欢 it，喜欢学习，但是往往学习过的工作中不太常用的知识总是遗忘，所以秉承“好记性不如烂笔头”的宗旨决定自己建站，用于自己的学习记录，便于快速回顾知识点，可能有人会说直接注册一个掘金账号不就行了，但是我希望我的产出始终在我自己这里，而不是在别人的数据库。综上所述，有了现在的这个网站。]]></summary>
+        <content type="html"><![CDATA[<p>建站初衷: 自问是一个比较喜欢 it，喜欢学习，但是往往学习过的工作中不太常用的知识总是遗忘，所以秉承“好记性不如烂笔头”的宗旨决定自己建站，用于自己的学习记录，便于快速回顾知识点，可能有人会说直接注册一个掘金账号不就行了，但是我希望我的产出始终在我自己这里，而不是在别人的数据库。综上所述，有了现在的这个网站。</p><blockquote><p>简单的事情简单做, 今天用最简单的方式完成了这个网站，用最简单的方式做一个生活的记录，没有数据库，没有后端，只有简单的 Markdown。</p></blockquote><h2>当前网站使用的技术</h2><ul><li><p><a href="https://docusaurus.io/">docusaurus</a> 生成静态网站。</p></li><li><p>利用 github action 完成自动部署，再也不用手动部署了，只需要写写写，没有多余的思想负担，也不用费心维护。</p></li><li><p>利用<code>easyops-cn/docusaurus-search-local</code>完成本地搜索功能，找文档更加方便了。而且是本地方案，不需要维护。</p></li></ul><p>今天也是阳历生日 🎂，算是一个好开头吧 😊</p>]]></content>
         <author>
-            <name>Sébastien Lorber</name>
-            <uri>https://sebastienlorber.com</uri>
-        </author>
-        <author>
-            <name>Yangshun Tay</name>
-            <uri>https://github.com/yangshun</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[MDX Blog Post]]></title>
-        <id>mdx-blog-post</id>
-        <link href="https://harrypoint.github.io/blog/mdx-blog-post"/>
-        <updated>2021-08-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Blog posts support Docusaurus Markdown features, such as MDX.]]></summary>
-        <content type="html"><![CDATA[<p>Blog posts support <a href="https://docusaurus.io/docs/markdown-features">Docusaurus Markdown features</a>, such as <a href="https://mdxjs.com/">MDX</a>.</p><p>:::tip</p><p>Use the power of React to create interactive blog posts.</p><pre><code class="language-js">&lt;button onClick={() =&gt; alert(&#x27;button clicked!&#x27;)}&gt;Click me!&lt;/button&gt;
-</code></pre><button>Click me!</button><p>:::</p>]]></content>
-        <author>
-            <name>Sébastien Lorber</name>
-            <uri>https://sebastienlorber.com</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Long Blog Post]]></title>
-        <id>long-blog-post</id>
-        <link href="https://harrypoint.github.io/blog/long-blog-post"/>
-        <updated>2019-05-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[This is the summary of a very long blog post,]]></summary>
-        <content type="html"><![CDATA[<p>This is the summary of a very long blog post,</p><p>Use a <code>&lt;!--</code> <code>truncate</code> <code>--&gt;</code> comment to limit blog post size in the list view.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content>
-        <author>
-            <name>Endilie Yacop Sucipto</name>
-            <uri>https://github.com/endiliey</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[First Blog Post]]></title>
-        <id>first-blog-post</id>
-        <link href="https://harrypoint.github.io/blog/first-blog-post"/>
-        <updated>2019-05-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet]]></summary>
-        <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content>
-        <author>
-            <name>Gao Wei</name>
-            <uri>https://github.com/wgao19</uri>
+            <name>Harry</name>
+            <uri>https://github.com/HarryPoint</uri>
         </author>
     </entry>
 </feed>
