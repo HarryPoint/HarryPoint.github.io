@@ -68,26 +68,26 @@ const config = {
       },
       footer: {
         style: "dark",
-        links: [
-          {
-            title: "文档",
-            items: [
-              {
-                label: "随笔",
-                to: "/docs/notes",
-              },
-            ],
-          },
-          {
-            title: "更多",
-            items: [
-              {
-                label: "GitHub",
-                href: "https://github.com/HarryPoint",
-              },
-            ],
-          },
-        ],
+        // links: [
+        //   {
+        //     title: "文档",
+        //     items: [
+        //       {
+        //         label: "随笔",
+        //         to: "/docs/notes",
+        //       },
+        //     ],
+        //   },
+        //   {
+        //     title: "更多",
+        //     items: [
+        //       {
+        //         label: "GitHub",
+        //         href: "https://github.com/HarryPoint",
+        //       },
+        //     ],
+        //   },
+        // ],
         copyright: `Copyright © ${new Date().getFullYear()} , Inc. Built by Harry.`,
       },
       prism: {
