@@ -1,3 +1,7 @@
+---
+tags: [docker]
+---
+
 ## 一张图总结 Docker 的命令
 
 ![cmd_logic.png](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2022-01-06_14:22:13_docker_cmd.png)
