@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[3570],{6136:function(s){s.exports=JSON.parse('{"name":"Centos7","permalink":"/docs/tags/centos-7","docs":[{"id":"Centos7","title":"Centos7","description":"\u5efa\u8bae\u5b89\u88c5\u5305","permalink":"/docs/Centos7"}],"allTagsPath":"/docs/tags"}')}}]);
