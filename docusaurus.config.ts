@@ -3,8 +3,8 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
-  title: "Code changes the world!",
-  tagline: "千里之行，始于足下!",
+  title: "Coding changes the world!",
+  tagline: '"Stay hungry, stay foolish." —— Steve Jobs',
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
