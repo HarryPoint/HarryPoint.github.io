@@ -1,32 +1,39 @@
-import React from "react";
 import clsx from "clsx";
-import styles from "./HomepageFeatures.module.css";
+import Heading from "@theme/Heading";
+import styles from "./styles.module.css";
 
 type FeatureItem = {
   title: string;
+  Svg: React.ComponentType<React.ComponentProps<"svg">>;
   description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: "好奇boy",
+    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: <>学习使我快乐😄</>,
   },
   {
     title: "目标明确",
+    Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
     description: <>知道要什么，才能更好的奋斗💪</>,
   },
   {
     title: "喜欢挑战",
+    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
     description: <>努力过后会发现，自己原来这么棒🌹</>,
   },
 ];
 
-function Feature({ title, description }: FeatureItem) {
+function Feature({ title, Svg, description }: FeatureItem) {
   return (
     <div className={clsx("col col--4")}>
-      <div className="text--center padding-horiz--sm">
-        <h3>{title}</h3>
+      <div className="text--center">
+        <Svg className={styles.featureSvg} role="img" />
+      </div>
+      <div className="text--center padding-horiz--md">
+        <Heading as="h3">{title}</Heading>
         <p>{description}</p>
       </div>
     </div>
