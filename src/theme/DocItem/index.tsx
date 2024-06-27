@@ -28,6 +28,8 @@ export default function DocItemWrapper(props: Props): JSX.Element {
             admin: [
               "GitHub repo owner and collaborators, only these guys can initialize github issues",
             ],
+            proxy:
+              "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
             // id: location.pathname, // Ensure uniqueness and length less than 50
             distractionFreeMode: false, // Facebook-like distraction free mode
           }}
