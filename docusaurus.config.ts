@@ -73,6 +73,7 @@ const config: Config = {
           label: "随笔",
         },
         { to: "/blog", label: "博客", position: "left" },
+        { to: "/about", label: "关于我", position: "left" },
         {
           href: "https://github.com/HarryPoint",
           label: "GitHub",
