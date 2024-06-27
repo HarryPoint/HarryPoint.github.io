@@ -25,9 +25,7 @@ export default function DocItemWrapper(props: Props): JSX.Element {
             clientSecret: "a34e6c82b96b311284d30adc5d82d258691f73b9",
             repo: "gitalk-store", // The repository of store comments,
             owner: "HarryPoint",
-            admin: [
-              "GitHub repo owner and collaborators, only these guys can initialize github issues",
-            ],
+            admin: ["HarryPoint"],
             proxy:
               "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
             // id: location.pathname, // Ensure uniqueness and length less than 50
