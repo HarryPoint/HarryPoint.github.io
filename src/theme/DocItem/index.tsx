@@ -28,7 +28,7 @@ export default function DocItemWrapper(props: Props): JSX.Element {
             admin: ["HarryPoint"],
             proxy:
               "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
-            // id: location.pathname, // Ensure uniqueness and length less than 50
+            id: location.pathname, // Ensure uniqueness and length less than 50
             distractionFreeMode: false, // Facebook-like distraction free mode
           }}
         />
