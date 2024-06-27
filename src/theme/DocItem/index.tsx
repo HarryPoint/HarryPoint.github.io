@@ -4,6 +4,7 @@ import type DocItemType from "@theme/DocItem";
 import type { WrapperProps } from "@docusaurus/types";
 import "gitalk/dist/gitalk.css";
 import GitalkComponent from "gitalk/dist/gitalk-component";
+import CryptoJS from "crypto-js";
 
 type Props = WrapperProps<typeof DocItemType>;
 
@@ -28,7 +29,7 @@ export default function DocItemWrapper(props: Props): JSX.Element {
             admin: ["HarryPoint"],
             proxy:
               "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
-            id: location.pathname, // Ensure uniqueness and length less than 50
+            id: CryptoJS.MD5(location.pathname).toString(), // Ensure uniqueness and length less than 50
             distractionFreeMode: false, // Facebook-like distraction free mode
           }}
         />
