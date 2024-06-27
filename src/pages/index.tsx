@@ -17,13 +17,15 @@ function HomepageHeader() {
       }}
     >
       <div className="container">
-        <Heading as="h1" className="hero__title">
+        <Heading as="h1" className={clsx("hero__title", styles.textShadow)}>
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className={clsx("hero__subtitle", styles.textShadow)}>
+          {siteConfig.tagline}
+        </p>
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/about/">
-            了解一下
+            more
           </Link>
         </div>
       </div>

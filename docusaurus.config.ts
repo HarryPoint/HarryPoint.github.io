@@ -3,8 +3,8 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
-  title: "Hi Harry",
-  tagline: "Your are so handsome!",
+  title: "Code changes the world!",
+  tagline: "千里之行，始于足下!",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -60,7 +60,7 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "Hi Harry",
+      title: "Harry",
       logo: {
         alt: "Logo",
         src: "img/logo.png",
