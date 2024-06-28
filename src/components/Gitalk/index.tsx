@@ -21,8 +21,8 @@ export default function Gitalk(props) {
           repo: "gitalk-store", // The repository of store comments,
           owner: "HarryPoint",
           admin: ["HarryPoint"],
-          // proxy:
-          //   "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+          proxy:
+            "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
           id: CryptoJS.MD5(location.pathname).toString(), // Ensure uniqueness and length less than 50
           distractionFreeMode: false, // Facebook-like distraction free mode
         }}
