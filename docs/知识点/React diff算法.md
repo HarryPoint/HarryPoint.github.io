@@ -43,10 +43,15 @@ reconcile流程的本质，是对比current fiberNode与 JSX 对象，生成 wip
 判断原理：
     判断的参照物是lastPlacedIndex变量（最后一个可复用的oldFiber的位置索引）。由于newChildren中的JSX对象的顺序代表“本次更新后对应fiberNode的顺序”，因此在遍历newChildren生成wip fiberNode的过程中，每个新生成的wip fiberNode 一定是在“当前所有同级wip fiberNode中最靠右的一个”
 第二轮遍历:
-遍历剩余的newChildren, 如果在 map(mapRemainingChildren生成的map)中找到，表明可以复用。
+遍历剩余的newChildren,  如果在 map(mapRemainingChildren生成的map)中没有找到直接标记为新节点，，如果找到了，表明可以复用。
 情况判断：
 1. olderFiber.index >= lastPlacedIndex, 则位置不变；
-2. olderFiber.index < lastPlacedIndex, 则位置移动；
+2. olderFiber.index < lastPlacedIndex, 则位置移动，标记 Placement；
+收尾工作：
+如果map中还剩下node，则标记 Deletion;
+
+### 遍历后收尾工作
+如果map zhon
 
 ### 性能优化要点
 尽量避免将节点从后面移动到前面
