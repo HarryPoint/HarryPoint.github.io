@@ -3,7 +3,7 @@
 reconcile流程的本质，是对比current fiberNode与 JSX 对象，生成 wip fiberNode, 这一流程的核心算法被称为diff算法。
 
 由于Diff操作本身也会带来性能损耗，React文档中提到，即使在最前沿的算法中，将前后两棵树完全比对的算法的复杂程度为 O(n3 )，其中n是树中元素的数量。
-为了降低算法复杂度，React的diff会预设三个限制：
+为了降低算法复杂度，React的diff会预设三个限制（复杂度O(n)）：
 - 只对同级元素进行Diff。如果一个DOM节点在前后两次更新中跨越了层级，那么React不会尝试复用他。
 - 两个不同类型的元素会产生出不同的树。如果元素由div变为p，React会销毁div及其子孙节点，并新建p及其子孙节点。
 - 开发者可以通过 key prop来暗示哪些子元素在不同的渲染下能保持稳定。
@@ -41,18 +41,17 @@ reconcile流程的本质，是对比current fiberNode与 JSX 对象，生成 wip
 > 前提：newChildren与oldFiber都没遍历完
 
 准备工作： 将所有“还未处理的oldFiber”存入一个“以key（如果key不存在，使用index作为key）为key，oldFiber为value的Map中”, 这一过程在 mapRemainingChildren方法中（目的是可以以O(1)的复杂度获取相同key的oldFiber）；
+
 判断原理：
     判断的参照物是lastPlacedIndex变量（最后一个可复用的oldFiber的位置索引）。由于newChildren中的JSX对象的顺序代表“本次更新后对应fiberNode的顺序”，因此在遍历newChildren生成wip fiberNode的过程中，每个新生成的wip fiberNode 一定是在“当前所有同级wip fiberNode中最靠右的一个”
+
 第二轮遍历:
-遍历剩余的newChildren,  如果在 map(mapRemainingChildren生成的map)中没有找到直接标记为新节点，，如果找到了，表明可以复用。
+遍历剩余的newChildren,  如果在 map(mapRemainingChildren生成的map)中没有找到直接标记为新节点，如果找到了，表明可以复用。
 情况判断：
 1. olderFiber.index >= lastPlacedIndex, 则位置不变；
 2. olderFiber.index < lastPlacedIndex, 则位置移动，标记 Placement；
-收尾工作：
-如果map中还剩下node，则标记 Deletion;
 
-### 遍历后收尾工作
-如果map zhon
+收尾工作：如果map中还剩下node，则标记 Deletion;
 
 ### 性能优化要点
 尽量避免将节点从后面移动到前面
