@@ -39,6 +39,7 @@ reconcile流程的本质，是对比current fiberNode与 JSX 对象，生成 wip
 
 ### 第二轮遍历
 > 前提：newChildren与oldFiber都没遍历完
+
 准备工作： 将所有“还未处理的oldFiber”存入一个“以key（如果key不存在，使用index作为key）为key，oldFiber为value的Map中”, 这一过程在 mapRemainingChildren方法中（目的是可以以O(1)的复杂度获取相同key的oldFiber）；
 判断原理：
     判断的参照物是lastPlacedIndex变量（最后一个可复用的oldFiber的位置索引）。由于newChildren中的JSX对象的顺序代表“本次更新后对应fiberNode的顺序”，因此在遍历newChildren生成wip fiberNode的过程中，每个新生成的wip fiberNode 一定是在“当前所有同级wip fiberNode中最靠右的一个”
