@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import DocItem from "@theme-original/DocItem";
 import type DocItemType from "@theme/DocItem";
 import type { WrapperProps } from "@docusaurus/types";
