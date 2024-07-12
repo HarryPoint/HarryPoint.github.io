@@ -13,7 +13,7 @@ tags: [daily]
 
 ## 1. 开始之前
 
-在开始写之前，我们要知道 RouterOS 脚本使用的是 MikroTik RouterOS 特定的脚本语言，它是一种专为 MikroTik 路由器设备设计的脚本语言。这个脚本语言被用于配置和自动化 MikroTik 路由器上的各种任务和功能。这种脚本语言与一般的编程语言略有不同，具体的语法和功能集是为了满足 MikroTik RouterOS 的特定需求而设计的。所以，在开始之前我们需要了解基本的语法：[Scripting - RouterOS](https://help.mikrotik.com/docs/display/ROS/Scripting?ref=zhelin.me) ，不过幸运的是，这个语法并不难。
+在开始写之前，我们要知道 RouterOS 脚本使用的是 MikroTik RouterOS 特定的脚本语言，它是一种专为 MikroTik 路由器设备设计的脚本语言。这个脚本语言被用于配置和自动化 MikroTik 路由器上的各种任务和功能。这种脚本语言与一般的编程语言略有不同，具体的语法和功能集是为了满足 MikroTik RouterOS 的特定需求而设计的。所以，在开始之前我们需要了解基本的语法：[Scripting - RouterOS](https://help.mikrotik.com/docs/display/ROS/Scripting?ref=harrypoint.github.io) ，不过幸运的是，这个语法并不难。
 
 ## 2. 脚本编写
 

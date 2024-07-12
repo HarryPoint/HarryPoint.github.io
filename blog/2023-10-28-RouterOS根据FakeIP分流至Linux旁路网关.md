@@ -96,4 +96,4 @@ tags: [daily]
 
 ## 3. 参考资料
 
-1. [MikroTik RouterOS 分流策略 - 根据IP地址段进行不同的路由](https://www.simaek.com/archives/299/?ref=zhelin.me)
+1. [MikroTik RouterOS 分流策略 - 根据IP地址段进行不同的路由](https://www.simaek.com/archives/299/?ref=harrypoint.github.io)

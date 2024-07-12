@@ -23,7 +23,7 @@ tags: [daily]
 
 两年前我第一次看到这句话还是答不出作用域是啥，虽然已经在脑海里有一个大致的轮廓。我觉得我应该继续深究一下，作用域究竟是啥。
 
-该文章我也在掘金上有发布，[点击此处前往掘金](https://juejin.im/post/5ae2f3566fb9a07a9b35af6a?ref=zhelin.me)
+该文章我也在掘金上有发布，[点击此处前往掘金](https://juejin.im/post/5ae2f3566fb9a07a9b35af6a?ref=harrypoint.github.io)
 
 ### 什么是编译？
 
