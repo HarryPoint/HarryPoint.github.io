@@ -10,7 +10,7 @@ export default function BlogPostPaginatorWrapper(props: Props): JSX.Element {
   return (
     <>
       <BlogPostPaginator {...props} />
-      <Gitalk />
+      <Gitalk isBlog />
     </>
   );
 }

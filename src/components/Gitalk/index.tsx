@@ -4,7 +4,8 @@ import CryptoJS from "crypto-js";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
-export default function Gitalk(props) {
+export default function Gitalk(props: { isBlog: boolean }) {
+  const { isBlog } = props;
   // 使用状态来控制GitalkComponent的渲染
   const [isClient, setIsClient] = useState(false);
 
@@ -13,7 +14,7 @@ export default function Gitalk(props) {
     setIsClient(true);
   }, []);
   return isClient ? (
-    <div className={styles.wrapper}>
+    <div className={isBlog ? null : styles.wrapper}>
       <GitalkComponent
         options={{
           clientID: "Ov23lit1eRiiNbsLJ8xv",
