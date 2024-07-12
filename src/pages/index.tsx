@@ -13,7 +13,8 @@ function HomepageHeader() {
     <header
       className={clsx("hero hero--primary", styles.heroBanner)}
       style={{
-        background: 'url("https://picsum.photos/1920/320?blur=2")',
+        background:
+          'url("https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-12_16:24:28_S5pnHo.jpg")',
       }}
     >
       <div className="container">
