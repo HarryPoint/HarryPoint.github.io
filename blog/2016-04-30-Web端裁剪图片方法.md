@@ -1,0 +1,131 @@
+## Web端裁剪图片方法
+
+
+
+
+由于在Web端，JavaScript不能直接处理本地文件，因此可以在后台裁剪图片，或者利用html5的canvas来处理。
+
+### 方法1：传送到后台剪切
+
+**步骤1：上传图片到后台，向前端返回图片URL**
+
+利用input标签，将文件发送到后台。
+
+可以使用jQuery中的ajaxFileUpload方法
+```javascript
+$.ajaxFileUpload( { 
+    url: 'live/apply/uploadImage', //用于文件上传的服务器端请求地址 
+    type:'post', secureuri: false, //一般设置为false 
+    fileElementId: image, //文件上传空间的id属性 
+    dataType: 'json', //返回值类型 一般设置为json
+    data:data, //可以传递图片属性及其他数据 
+    success: function (data, status) //服务器成功响应处理函数 { //上传传成功处理 }, 
+    error: function (data, status, e)//服务器响应失败处理函数 { //上传失败处理 }
+```
+
+**步骤2： 进行裁剪，获取图片的坐标及长宽等值，传回后台**
+
+这里一般是利用一个移动的div来获取剪截的动画效果，目前有多种jquery插件可以使用，本文使用的是Jcrop插件，比较简单方便。
+
+```javascript
+$("#myPhoto").Jcrop({
+  onChange: showPreview,
+  onSelect: showPreview,
+  aspectRatio: 1,
+});
+function showPreview(coords) {
+  if (parseInt(coords.w)) {
+    //计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到
+    var rx = $("#preview_box").width() / coords.w;
+    var ry = $("#preview_box").height() / coords.h;
+    //通过比例值控制图片的样式与显示
+    $("#crop_preview").css({
+      width: Math.round(rx * $("#myPhoto").width()) + "px",
+      //预览图片宽度为计算比例值与原图片宽度的乘积
+      height: Math.round(rx * $("#myPhoto").height()) + "px",
+      //预览图片高度为计算比例值与原图片高度的乘积
+      marginLeft: "-" + Math.round(rx * coords.x) + "px",
+      marginTop: "-" + Math.round(ry * coords.y) + "px",
+    });
+    $("#X1").val(coords.x);
+    $("#Y1").val(coords.y);
+    $("#X2").val(coords.x2);
+    $("#Y2").val(coords.y2);
+    $("#W").val(coords.w);
+    $("#H").val(coords.h);
+  }
+}
+```
+
+根据上述过程，可以将获取到的剪截横纵坐标和长宽数据发送到后台。
+
+**步骤3：后台裁剪图片**
+
+略
+
+### 方法2：Html5的canvas技术
+
+这个需要浏览器支持以下几个点，并且兼容性还没有进行测试：
+
+File API\
+Blob\
+canvas
+
+**步骤1：读取文件**
+
+如方法1一样，需要用input标签来获取file，但是JavaScript不能直接操作文件，因此需要File API来处理。
+
+
+```javascript
+$("input[type=file]").change(function () {
+  var file = this.files[0];
+  var reader = new FileReader();
+  reader.onload = function () {
+    // 通过 reader.result 来访问生成的 DataURL
+    var url = reader.result;
+    setImageURL(url);
+  };
+  reader.readAsDataURL(file);
+});
+var image = new Image();
+function setImageURL(url) {
+  image.src = url;
+}
+
+```
+
+**步骤2：获取裁剪坐标**
+
+参照方法1中的步骤2
+
+**步骤3：利用canvas重绘图片**
+
+首先要设置剪截后的图片大小相等的canvas。
+
+```javascript
+// 以下四个参数由步骤2获得 var x, y, width, height;
+var canvas = $(" ")[0],
+  ctx = canvas.getContext("2d");
+ctx.drawImage(image, x, y, width, height, 0, 0, width, height); //重绘
+$(document.body).append(canvas); //添加到文档中可以查看效果
+```
+
+**步骤4：保存图片**
+
+我们要获取 canvas 中图片的信息，需要用 toDataURL 转换成上面用到的 DataURL 。 然后取出其中 base64 信息，再用window\.atob 转换成由二进制字符串。但 window\.atob 转换后的结果仍然是字符串，直接给 Blob 还是会出错。所以又要用Uint8Array 转换一下。
+
+```javascript
+var data=canvas.toDataURL(); 
+// dataURL 的格式为 “data:image/png;base64,\*\*\*\*”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了 
+data=data.split(',')[1]; 
+data=window.atob(data); 
+var ia = new Uint8Array(data.length); for (var i = 0; i < data.length; i++) { ia[i] = data.charCodeAt(i); }; // canvas.toDataURL 返回的默认格式就是 image/png 
+var blob=new Blob(\[ia], {type:"image/png"});
+```
+
+**步骤5：将blob数据发送至后台**
+
+在后台可以将Blob格式的数据转换成image保存。
+
+> 原文标题：Web端裁剪图片方法\
+> 原文链接：[https://segmentfault.com/a/1190000004268074](https://segmentfault.com/a/1190000004268074?ref=zhelin.me)

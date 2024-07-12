@@ -1,0 +1,205 @@
+## jQuery实现弹幕效果、文字水平滚动/垂直滚动插件
+
+
+<!--kg-card-begin: markdown-->
+
+在写这个插件之前，已经在很多专题页面需要用到弹幕，或者是文字滚动等效果，原理大致相同（也有细微区别），但一直没有封装成插件。也是在这些工作中尝试使用了多种方法，在这里也将一一列举其中的优缺点。
+
+### **一、使用CSS Animation的解决方案**
+
+使用CSS Animation这个解决方案并不好，但这也是我最开始的一个思路。我个人认为这是一个最差的解决方案，在实际使用过程中发现了许多意外的问题。它的兼容性倒是其次，更大的问题是弹幕元素的不可控制，以及窗口失去焦点后，动画暂停，但是JS并没有暂停。这就导致了重新恢复窗口焦点后，弹幕一堆的出现。是一个非常不好的效果。
+
+**思路：**
+
+使用@keyframes定义一个移动的动画，通过JS动态的加载弹幕元素到显示区域边缘，并指定相应的类。那么添加的元素就会执行我们定义的这个移动动画。那么这个弹幕的效果就实现了。当然这些元素都是绝对定位元素。
+
+这个解决方案的思路大致就是这样，但其本身的局限性导致我不去使用它，就不拆开细说。
+
+### 二、使用相对定位偏移的解决方案
+
+使用这种方法较上一个方法效果好了很多，这个方法我之前都是用于列表滚动。并没有考虑用在弹幕这种效果上，那么该如何去实现呢？
+
+**思路：**
+
+这里的所说的相对定位并不是说设置元素的position值为relative。当然这样设置之后使用left/right/top/bottom来做偏移也是能实现这个效果的，但是在这里我是使用的margin来做偏移。效果与设置position值为relative一样。
+
+**效果：**
+
+因为当时无法提供json数据，所以数据都是渲染到页面上的。
+
+**JS：**
+
+```
+var barrage = function (val) {
+            this.box = $("#j-head-list .ui-repeater");
+            this.item = $("#j-head-list .ui-repeater .ui-repeater-item");
+            //保存第一个列表盒子 
+            this.listBox1 = $("#j-head-list .list_01");
+            this.listBox2 = $("#j-head-list .list_02");
+            // 保存数据 
+            this.data = [];
+            // 需要暂停的元素
+            this.stopItem = null;
+            // 首次渲染长度 
+            this.firstLen = 10;
+            this.init();
+        };
+        barrage.prototype = {
+            init: function () {
+                this.getData();
+                //this.news(); 
+            },
+            //获取并整理数据 
+            getData: function () {
+                var self = this;
+                var item = $.makeArray(this.item);
+                for (var i in item) {
+                    this.data.push(item[i].innerHTML.trim());
+                }
+                this.data.forEach(function (item, index, array) {
+                    self.data[index] = item.replace(/\[tgc/g, "[");
+                });
+                this.box.html("");
+                this.renderer();
+            },
+            //新闻列表整理 
+            news: function () {
+                var item = $(".news_list .ui-repeater").html().toString();
+                item = item.replace(/\[tgc/g, "[");
+                $(".news_list .ui-repeater").html(item);
+            },
+            //悬浮暂停 
+            hoverStop: function () {
+                var self = this;
+                this.box.hover(function () {
+                    var $this = $(this);
+                    if ($this.hasClass("list_01")) {
+                        self.stopItem = 1;
+                    } else {
+                        self.stopItem = 2;
+                    }
+                }, function () {
+                    self.stopItem = null;
+                })
+            }, //渲染数据
+            renderer: function () {
+                var self = this, start, dataLen = this.data.length;
+                //第一次渲染数据 
+                var index = 0;
+                for (start = 0; start < this.firstLen; start++) {
+                    var _html = '<li class="ui-repeater-item" style="display: inline-block">' + this.data[index] + '</li>';
+                    if (start % 2 == 0) {
+                        this.box.eq(0).append(_html);
+                    } else {
+                        this.box.eq(1).append(_html);
+                    }
+                    index++;
+                    if (dataLen < this.firstLen) {
+                        if (index == dataLen) {
+                            index = 0
+                        }
+                    }
+                }
+                this.hoverStop();
+                //添加数据 
+                var left1 = 0, left2 = 0, width1, width2;
+                dataMonitor();
+                getWidth();
+                var time = setInterval(function () {
+                    //保存第一次宽度 
+                    if (left1 < width1 && self.stopItem != 1) {
+                        self.listBox1.css("margin-left", -(++left1) + 'px')
+                    } else if (left1 >= width1 && self.stopItem != 1) {
+                        var _html = '<li class="ui-repeater-item" style="display: inline-block">' + self.data[++start] + '</li>';
+                        self.listBox1.children().eq(0).remove();
+                        self.listBox1.css("margin-left", '-1px');
+                        self.listBox1.append(_html);
+                        left1 = 1;
+                        dataMonitor();
+                        getWidth();
+                    }
+                    if (left2 < width2 && self.stopItem != 2) {
+                        self.listBox2.css("margin-left", -(++left2) + 'px')
+                    } else if (left2 >= width2 && self.stopItem != 2) {
+                        var _html = '<li class="ui-repeater-item" style="display: inline-block">' + self.data[++start] + '</li>';
+                        self.listBox2.children().eq(0).remove();
+                        self.listBox2.css("margin-left", '-1px');
+                        self.listBox2.append(_html);
+                        left2 = 1;
+                        dataMonitor();
+                        getWidth();
+                    }
+                }, 30);
+
+                function getWidth() {
+                    width1 = self.box.eq(0).children().eq(0).css("width");
+                    width2 = self.box.eq(1).children().eq(0).css("width");
+                    width1 = parseInt(width1.substring(0, width1.indexOf('px'))) + 50;
+                    width2 = parseInt(width2.substring(0, width2.indexOf('px'))) + 50;
+                }
+
+                function dataMonitor() {
+                    if (start + 1 >= dataLen) {
+                        start = -1;
+                    }
+                }
+            }
+        };
+        new barrage({});
+```
+
+从上面的代码可以看出，其实这个方法也是有瑕疵的，速度调节我们需要依赖setInterval的时间，或者是每执行一次时间循环元素的偏移量增大一点。但是无论怎么写，都会有滚动的顿挫感，不够平滑。那有什么方法来解决这些问题呢？
+
+### 三、基于requestAnimationFrame的解决方案
+
+使用requestAnimationFrame应该是最好的一个解决方案了（就我的眼界来看），并结合translate3d() 做偏移，简直是完美。那么要使用requestAnimationFrame，我们就要知道什么事requestAnimationFrame，那么久简单的介绍一下：
+
+**requestAnimationFrame：**
+
+window\.requestAnimationFrame()这个方法是用来在页面重绘之前，通知浏览器调用一个指定的函数，以满足开发者操作动画的需求。这个方法接受一个函数为参，该函数会在重绘前调用。
+
+如果你想做逐帧动画的时候，你应该用这个方法。这就要求你的动画函数执行会先于浏览器重绘动作。通常来说，被调用的频率是每秒60次，但是一般会遵循W3C标准规定的频率。如果是后台标签页面，重绘频率则会大大降低。
+
+回调函数只会被传入一个DOMHighResTimeStamp参数，这个参数指示当前被 requestAnimationFrame 序列化的函数队列被触发的时间。因为很多个函数在这一帧被执行，所以每个函数都将被传入一个相同的时间戳，尽管经过了之前很多的计算工作。这个数值是一个小数，单位毫秒，精确度在 10 µs。
+
+需要注意的是：如果想得到连贯的逐帧动画，函数中必须重新调用 requestAnimationFrame()。
+
+**语法：**
+
+```
+*requestID* = window.requestAnimationFrame(*callback*); // Firefox 23 / IE10 / Chrome / Safari 7 (incl. iOS) 
+requestID = window.mozRequestAnimationFrame(*`callback`*); // Firefox < 23 
+requestID = window.webkitRequestAnimationFrame(callback); // Older versions Chrome/Webkit
+```
+
+我们可以看到上面有兼容性写法，是的，其本身兼容性不太好，但是支持大部分的现代浏览器。但这不符合我们工作的需要，这我们不用担心，Opera浏览器的技术师Erik Möller 把这个函数进行了封装，使得它能更好的兼容各种浏览器。
+
+```
+(function () {
+        var lastTime = 0;
+        var vendors = ['webkit', 'moz'];
+        for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+            window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+            window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+        }
+        if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function () {
+                callback(currTime + timeToCall);
+            }, timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+        if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function (id) {
+            clearTimeout(id);
+        };
+    }());
+```
+
+这样，我们就可以放心的使用这个方法了。但仅限于现代浏览器。IE9+是没问题的。至于它的其他信息可以点击[这里查询](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame?ref=zhelin.me)。
+
+**效果：**
+
+
+需要源码的同学可以点击[这里下载](https://github.com/ZhelinCheng/jquery.Barrage?ref=zhelin.me)！

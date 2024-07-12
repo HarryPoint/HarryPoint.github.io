@@ -1,0 +1,102 @@
+## CSS3硬件加速技巧
+
+
+<!--kg-card-begin: markdown-->
+
+使用3D硬件加速提升动画性能时，最好给元素增加一个z-index属性，人为干扰复合层的排序，可以有效减少chrome创建不必要的复合层，提升渲染性能，移动端优化效果尤为明显。
+
+常听人说：
+
+移动端要想动画性能流畅，应该使用3d硬件加速
+
+最近深入了解了一些浏览器内核的细节，感觉这里面其实有坑啊。。。
+
+事情要从最近看的《[WebKit技术内幕](http://book.douban.com/subject/25910556/?ref=zhelin.me)》说起，第二章介绍了网页的结构，其中提到了Webkit硬件加速的方式，会把需要渲染的元素放到特定的『Composited Layer』中，在chrome的控制台可以这样开启：
+
+![CSS3硬件加速技巧](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-12_15:06:02_rJ2GXd.png)
+
+选择『Show composited layer borders』以后，就能看到有动画3d变换的元素会被一个黄色的边框圈起来，表示放到了一个新的『复合层（composited layer）』中渲染，大概长这个样子：
+
+![CSS3硬件加速技巧](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-12_15:06:20_JVCybm.png)
+
+蓝色的细线是浏览器渲染时候的『瓦片』，浏览器绘制页面的时候只会绘制可视区域一定范围内的瓦片，以节省性能开销，而黄色的边框框起来的，就代表了这个元素被放到特殊的复合层中渲染，跟主文档不在一个层中
+
+然后我觉得这个视图挺有意思的，就拿来看了一下国内某项目，不看不知道，一看被吓尿：
+
+![CSS3硬件加速技巧](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-12_15:06:37_iClTzJ.png)
+
+这个项目什么时候搞成所有元素都用3d加速了？！
+
+仔细排查了这些被框出来的元素，完全没有任何需要复合层渲染的迹象，我真是哔了狗了。。。我开始一个个删除元素，简化代码，很快就发现，原来罪魁祸首在这里：
+
+![CSS3硬件加速技巧](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-12_15:06:53_VlLDSt.png)
+
+头部的那个轮播动画元素的存在居然会导致下面所有相对和绝对定位的元素都被放到复合层中。。。
+
+查了一些 [资料](http://www.html5rocks.com/zh/tutorials/speed/layers/?ref=zhelin.me)：
+
+> 层创建标准
+>
+> 什么情况下能使元素获得自己的层？虽然 Chrome 的启发式方法(heuristic)随着时间在不断发展进步，但是从目前来说，满足以下任意情况便会创建层：
+>
+> * 3D 或透视变换(perspective transform) CSS 属性
+> * 使用加速视频解码的 元素
+> * 拥有 3D (WebGL) 上下文或加速的 2D 上下文的 元素
+> * 混合插件(如 Flash)
+> * 对自己的 opacity 做 CSS 动画或使用一个动画 webkit 变换的元素
+> * 拥有加速 CSS 过滤器的元素
+> * 元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里)
+> * 元素有一个 z-index 较低且包含一个复合层的兄弟元素(换句话说就是该元素在复合层上面渲染)
+
+主要是最后一条，我觉得它的中文翻译不是很准确，原文其实是：
+
+> Element has a sibling with a lower z-index which has a compositing layer (in other words the it’s rendered on top of a composited layer)
+
+这句话的意思是，如果有一个元素，它的兄弟元素在复合层中渲染，而这个兄弟元素的z-index比较小，那么这个元素（不管是不是应用了硬件加速样式）也会被放到复合层中。
+
+最可怕的是，浏览器有可能给复合层之后的所有相对或绝对定位的元素都创建一个复合层来渲染，于是就有了上面那个项目截图的那种效果。之前一直奇怪为什么这个页面滚动很卡，明明没有多少DOM，现在看来问题就在这里了！
+
+于是乎我写了一个页面，让大家看看这东西到底有多大威力：
+
+![二维码](http://qr.liantu.com/api.php?text=http://fouber.github.io/test/layer/)
+
+链接：[http://fouber.github.io/test/layer/](http://fouber.github.io/test/layer/?ref=zhelin.me)\
+我在上面这个页面中放置了一个h1标题，应用了translate3d动画，使得它被放到composited layer中渲染，然后在这个元素后面创建了2000个list，每个list中都有一个图片，一个标题和一个日期显示，其中图片和日期显示是绝对定位，父容器li是相对定位，然后，各位可以按照前述的说明打开chrome的『show composited layer borders』选项看看这个页面的内容复合层分布：
+
+![CSS3硬件加速技巧](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-12_15:07:52_NxYN8F.jpg)
+
+就是这个鸟样子，很难想象，这样的页面滚动起来会卡成什么样。我用的是mac机器，快速拖动滚动条chrome已经非常吃力了，然后我写了一个简单的滚动条移动操作：
+
+setInterval('document.body.scrollTop++', 0);
+
+然后用timeline抓一下页面性能：
+
+![CSS3硬件加速技巧](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-12_15:08:58_lNtS3c.jpg)
+
+一次『Composite Layers』的计算居然要 96.206 ms ！！这还是在我的mac系统上哦，手机上真的会卡出翔。
+
+我在页面上放置了一个开关『为动画元素设置z-index』，这个checkbox点击之后，会用js给那个动画的h1元素加 position:relative 和 z-index: 1 ，这种做法的原理是人为提升动画元素的z-index，让浏览器知道这个元素的层排序，就不会很傻逼的把其他z-index比它高的元素也弄到复合层中了，看看这个效果：
+
+![CSS3硬件加速技巧](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-12_15:08:23_QObmAJ.gif)
+
+仅仅给动画元素设置一个高一些的z-index，就能解决这种无厘头增加复合层的问题，略无语。。。搞定之后，再用滚动条移动函数抓一下页面性能：
+
+![CSS3硬件加速技巧](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-12_15:09:34_GIrlOo.jpg)
+
+完全恢复正常了有木有！
+
+大家可以用支持『硬件加速』的『安卓』手机浏览器测试上述页面，给动画元素加z-index前后的性能差距非常明显。
+
+不过也不是所有浏览器都有这个问题，我在mac上的Safari、firefox都没有明显差异，安卓手机上的QQ浏览器好像也正常，猎豹、UC、欧朋、webview等浏览器差距明显，更多测试就靠大家来发现吧。
+
+最后总结一下：
+
+**使用3D硬件加速提升动画性能时，最好给元素增加一个z-index属性，人为干扰复合层的排序，可以有效减少chrome创建不必要的复合层，提升渲染性能，移动端优化效果尤为明显。**
+
+大家可以现在就排查一下这类问题，尤其是用了轮播、动画loading的页面，出现这问题很常见。另外推荐在追查性能问题的时候打开『show composited layer borders』选项，如果页面有很多黄色的框肯定是不对的。
+
+最后，再次推荐一下《Webkit技术内幕》这本书。浏览器内核之于前端工程师，就如同操作系统之于后端工程师，毕竟是我们程序运行的宿主环境，多了解一些，很多问题容易想通。
+
+> 原文标题：《CSS3硬件加速技巧》\
+> 原文作者：前端农民工\
+> 原文链接：[http://caibaojian.com/css3-animation-3d.html](http://caibaojian.com/css3-animation-3d.html?ref=zhelin.me)

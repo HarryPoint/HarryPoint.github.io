@@ -3,12 +3,13 @@ const path = require("path");
 const { exec } = require("child_process");
 
 const targets = [
-  "https://zhelin.me/post/55a64d40ffbb030d/",
-  "https://zhelin.me/post/e4aba903f3826e7b/",
-  "https://zhelin.me/post/7f5bdbb2857e15aa/",
-  "https://zhelin.me/post/229fbf9ebf2b57f6/",
-  "https://zhelin.me/post/04f593718090cbc8/",
-  "https://zhelin.me/post/83154e427cdb8791/",
+  "https://zhelin.me/post/95a5cf572e791ece69251f3ca5d2e476/",
+  "https://zhelin.me/post/ead7d9b97b09e2961e9a97419bfc3a05/",
+  "https://zhelin.me/post/514d343a2be74cd510d0545c213c3c4f/",
+  "https://zhelin.me/post/0a0ff2a45356825055f9b3a188cf0793/",
+  "https://zhelin.me/post/25cc9399f88407315b29181fb35fe599/",
+  "https://zhelin.me/post/454192a316a0ba1f57202a18ae9f37f6/",
+  "https://zhelin.me/post/5d2a4c9c662e5e82dc12cefc745549d2/",
 ];
 
 targets.forEach((target) => {
