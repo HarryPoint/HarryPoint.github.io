@@ -48,6 +48,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             "https://github.com/HarryPoint/HarryPoint.github.io/blob/main/",
+          postsPerPage: "ALL",
         },
         theme: {
           customCss: "./src/css/custom.css",
