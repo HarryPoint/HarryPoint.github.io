@@ -534,7 +534,7 @@ private filterFunc(word: string, every: boolean = false, replace: boolean = true
 使用：
 
 ```typescript
-let m = new Mint(['淘宝', '拼多多', '京东'])
+let m = new Censor(['淘宝', '拼多多', '京东'])
 
 console.log(m.filterSync('双十一在淘宝买东西，618在京东买东西，当然你也可以在拼多多买东西。'))
 /* { 
