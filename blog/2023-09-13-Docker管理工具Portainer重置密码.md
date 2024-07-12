@@ -1,8 +1,7 @@
-## Docker管理工具Portainer重置密码
-
-
-<!--kg-card-begin: markdown-->
-
+---
+authors: Harry
+tags: [daily]
+---
 使用Portainer忘记密码快速解决方案：
 
 1、进入服务器后台
@@ -12,6 +11,8 @@
 ```shell
 sudo docker pull portainer/helper-reset-password
 ```
+
+<!-- truncate -->
 
 3、停止portainer
 

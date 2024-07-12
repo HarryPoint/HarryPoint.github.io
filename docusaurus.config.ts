@@ -49,6 +49,7 @@ const config: Config = {
           editUrl:
             "https://github.com/HarryPoint/HarryPoint.github.io/blob/main/",
           postsPerPage: "ALL",
+          blogSidebarCount: "ALL",
         },
         theme: {
           customCss: "./src/css/custom.css",

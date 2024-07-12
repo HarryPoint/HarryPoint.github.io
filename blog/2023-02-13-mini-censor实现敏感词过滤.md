@@ -9,6 +9,8 @@ tags: [daily]
 
 算法使用的是AC（Aho–Corasick）自动机算法。会简单地对方案进行阐述，主要是代码实现。需要注意的是，在这里将采用TypeScript编写。同时代码也上传至GitHub，[点击此处](https://github.com/HarryPoint/mini-censor)查看本文完整代码。
 
+<!-- truncate -->
+
 > Aho–Corasick算法是由Alfred V. Aho和Margaret J.Corasick 发明的字符串搜索算法，用于在输入的一串字符串中匹配有限组“字典”中的子串。它与普通字符串匹配的不同点在于同时与所有字典串进行匹配。算法均摊情况下具有近似于线性的时间复杂度，约为字符串的长度加所有匹配的数量。
 
 在正式进入到AC自动机算法之前，我们需要先了解Trie树。
