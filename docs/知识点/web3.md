@@ -153,3 +153,61 @@ Cypherpunk(密码朋克) 中本聪
 
 web3书籍推荐
 ![img](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-13_02:09:29_b53ADe.png)
+
+## 代码步骤
+
+```javascript
+import { ref } from "vue"
+import { generateMnemonic, mnemonicToSeed } from "bip39"
+import ethwallet, { hdkey } from "ethereumjs-wallet"
+
+// 创建助记河
+// const mnemonic = generateMnemonic();
+// console. 1og( mnemonic);
+const mnemonic = ref("bus render shove water original exchange face quiz girl choose subway morning")
+// 生成秘钥对 keypair
+const genMnemonic = async () => {
+    const seed = await mnemonicToSeed(mnemonic.value);
+    const hdWallet = hdkey.fromMasterSeed(seed);
+    const keypair = hdWallet.derivePath("m/44'/60'/0'/0/0");
+    //获取私钥
+    //1.获取钱包对象
+    const wallet = keypair.getwallet();
+    // 2.获取钱包地址
+    const lowerCaseAddress = wallet.getAddressString();
+    //3. 获取钱包校验地址
+    const checkAddress = wallet.getChecksumAddressString();
+    // 获取私钥
+    const priKey = wallet.getPrivatekey().toString("hex");
+    console.log(prikey);
+
+    // 导出keystore
+    const password = "111111";
+    // 1. web3js
+    const web3 = new Web3(Web3.givenProvider || "wss://goerli.infura.io/ws/v3/cb7e63cf28244e4499b4b6fb6162e746");
+    const keyStore = web3.eth.accounts.encrypt(prikey, password);
+    console.log(JSON.stringify(keystore));
+    // 2. wallet 对象
+    const keyStore2 = await wallet. tov3(password);
+    console.log(JSON.stringify(keystore2));
+
+    // 通过keystore 获取私钥
+    // 1. web3
+    const res = web3.eth.accounts.decrypt(keyStore, password);
+    console.log(res.privatekey);
+    //2. wallet
+    const res2 = await ethwallet.fromV3(keyStore2, password);
+    const key = res2.getPrivatekey().toString("hex");
+    console.log(key);
+
+    // 通过私锅获取地址
+    const priKey2 = Buffer(prikey,"hex");
+    const wallet3 = ethwallet.fromPrivateKey(priKey2);
+    const lowerCaseAddress2 = wallet3.getAddressString();
+    console.log(lowerCaseAddress2);
+}
+genMnemonic();
+```
+## 钱包流程图
+
+![img](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-14_22:24:56_64V70A.png)
