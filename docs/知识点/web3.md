@@ -245,3 +245,10 @@ npm install web3 bip39 ethereumjs-txa1.3.7 ethereumis-util ethereumjs-wallet
 |                  now (uint)                   |                     当前块的时间戳                      |
 |              tx.gasprice (uint)               |                      交易的gas价格                      |
 |          tx.origin (address payable)          |                      交易的发送方                       |
+
+### 可见性修饰符
+
+1. public - 所有合约与账号都可以调用
+2. private - 只有在定义该函数的合约可以调用
+3. internal - 当前合约或者继承该合约的，类似java 里面的protected关键字
+4. external - 只有其他合约或者账号可以调用,定义该函数的合约不能调用除非使用this关键字
