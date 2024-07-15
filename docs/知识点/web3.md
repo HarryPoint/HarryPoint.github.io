@@ -211,3 +211,37 @@ genMnemonic();
 ## 钱包流程图
 
 ![img](https://cdn.jsdelivr.net/gh/HarryPoint/oss@main/uPic/2024-07-14_22:24:56_64V70A.png)
+
+### 安装npm包
+
+```bash
+npm install web3 bip39 ethereumjs-txa1.3.7 ethereumis-util ethereumjs-wallet
+```
+
+## solidity
+
+### 变量类型
+
+- 局部变量（在函数内部声明，不存储到锉上）
+- 状态变量（在函数外部声明，状态变量是永久地存储在链上的值）
+- 全局变量（内置提供有关区块链的信息比如 block、 msg 等）
+
+全局变量
+这些是全局工作区中存在的特殊变量，提供有关区块链和交易属性的信息。
+
+|                     名称                      |                          返回                           |
+| :-------------------------------------------: | :-----------------------------------------------------: |
+| blockhash(uint blockNumber) returns (bytes32) | 给定区块的哈希值- 只适用于256最近区块，不包含当前区块。 |
+|       block.coinbase (address payable)        |                   当前区块矿工的地址                    |
+|            block.difficulty (uint)            |                     当前区块的难度                      |
+|             block.gaslimit (uint)             |                   当前区块的gaslimit                    |
+|              block.number (uint)              |                    当前区块的number                     |
+|            block.timestamp (uint)             |          当前区块的时间戳，为unix纪元以来的秒           |
+|          gasleft() returns (uint256)          |                        剩余 gas                         |
+|           msg.data (bytes calldata)           |                      完成 calldata                      |
+|         msg.sender (address payable)          |                消息发送者（当前 caller）                |
+|               msg.sig (bytes4)                |        calldata的前四个字节(function identiffer)        |
+|               msg.value (uint)                |                     当前消息的wei值                     |
+|                  now (uint)                   |                     当前块的时间戳                      |
+|              tx.gasprice (uint)               |                      交易的gas价格                      |
+|          tx.origin (address payable)          |                      交易的发送方                       |
