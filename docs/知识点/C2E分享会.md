@@ -207,27 +207,33 @@ Hardhat:
 Hardhat是一个以太坊开发环境，支持本地开发、测试和部署。
 使用示例：
 1. 初始化项目：
+```shell
 mkdir my-hardhat-project
 cd my-hardhat-project
 npm init -y
 npm instal1 --save-dev hardhat
 npx hardhat
+```
 2. 编写和部署智能合约：
-scripts/deploy. js
+
+```javascript
+// scripts/deploy.js
 async function main() {
-const [deployer] = await ethers.getSigners()；
-console. 1og("Deploying contracts with the account:"， deployer. address)；
-const HelloWorld
-await ethers.getContractFactory("HelloNorld")；
-const helloworld = await Helloworld.deploy()；
-console. 1og("Contract deployed to address:"， helloworld.address)；
+    const [deployer] = await ethers.getSigners();
+    console.log("Deploying contracts with the account:", deployer. address);
+    const HelloWorld = await ethers.getContractFactory("HelloNorld");
+    const helloworld = await Helloworld.deploy();
+    console.log("Contract deployed to address:", helloworld.address);
 }
-main().catch((error) =>
-console.error (error)；
-process.exitCode： 1；
-}；
+main().catch((error) => {
+    console.error(error);
+    process.exitCode(1);
+})；
+```
 3.运行部署脚本：
+```shell
 npx hardhat run scripts/deploy. js
+```
 MetaMask:
 MetaMask是一个浏览器插件钱包，用于与以太坊DApp交互。
 。安装插件后，创建或导入钱包，连接到测试网络进行开发测试。
@@ -235,18 +241,17 @@ MetaMask是一个浏览器插件钱包，用于与以太坊DApp交互。
 1. 编写智能合约：
 。使用Solidity编写合约代码。
 。编译合约并生成ABI（应用程序二进制接口），
-2. 部署合约：
+1. 部署合约：
 。使用工具（如Remix、Hardhat）将合约部署到以太坊网络（测试网或主网）
 。获得合约地址。
-3. 与合约交互：
+1. 与合约交互：
 使用Web3.s与合约进行交互，例如调用合约方法、查询状态等。
 示例代码：
 ```javascript
-const contractABI =
-/* ABI数组*/]；
-const contractAddress ='OxYourContractAddress'；
-const contract = new web3.eth. Contract(contractABI, contractAddress)；
-contract. methods.greeting().cal1(). then(console.1og)；
+const contractABI = [/* ABI数组*/];
+const contractAddress ='OxYourContractAddress';
+const contract = new web3.eth.Contract(contractABI, contractAddress);
+contract. methods.greeting().call().then(console.1og);
 ```
 总结
 回顾关键点：智能合约的定义、Solidity编程、工具使用和开发步骡。
